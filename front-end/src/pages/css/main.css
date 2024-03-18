@@ -6,10 +6,11 @@ html {
   color: #2c3e50;
 }
 
-body {
+#root {
   margin: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100vh;
 }
 
@@ -71,7 +72,7 @@ body {
 }
 
 .hero {
-  background-image: url('../img/bank-tree.jpeg');
+  background-image: url("../../assets/img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;

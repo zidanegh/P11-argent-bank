@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 
 function SignIn() {
+  //bloquer le button tant que le user n'a pas rentrer tout les champs et tant que les champs ne sont pas bon aussi puis rediriger
+  fetch(http:localhost:3001/api-docs, {
+    method: "GET" // default, so we can ignore
+})
   return (
     <>
       <main class="main bg-dark">
@@ -20,11 +24,6 @@ function SignIn() {
               <input type="checkbox" id="remember-me" />
               <label for="remember-me">Remember me</label>
             </div>
-            PLACEHOLDER DUE TO STATIC SITE
-            <a href="./user.html" class="sign-in-button">
-              Sign In
-            </a>
-            SHOULD BE THE BUTTON BELOW
             <NavLink to="/User">
               <button class="sign-in-button">Sign In</button>
             </NavLink>

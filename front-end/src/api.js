@@ -1,5 +1,7 @@
 const BASE_URL = "http://localhost:3001/api/v1";
 
+const tokenn = "";
+
 async function login(email, password) {
   const response = await fetch(`${BASE_URL}/user/login`, {
     method: "post",
@@ -27,8 +29,7 @@ async function loginii() {
   const response = await fetch(`${BASE_URL}/user/profile`, {
     method: "PUT",
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjQ1MzE1OGZiYzE2MWM2NDcxYmQwZiIsImlhdCI6MTcxMTU2MDM4MCwiZXhwIjoxNzExNjQ2NzgwfQ.0Pa8j48xDIQnOV4Mv8qOSZSVRpB0JEsnlcL2TDRW8Ss",
+      Authorization: "Bearer " + tokenn,
       "Content-type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({

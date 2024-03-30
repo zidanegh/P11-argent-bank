@@ -1,59 +1,43 @@
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { infoUserSlice } from "../store/store";
+import { infoUser, login, changeUserName } from "../api";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 function SignIn() {
-  const BASE_URL = "http://localhost:3001/api/v1";
-  const [tokenData, setTokenData] = useState("");
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const tokenn =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjQ1MzE1OGZiYzE2MWM2NDcxYmQwZiIsImlhdCI6MTcxMTYzMjU2NiwiZXhwIjoxNzExNzE4OTY2fQ.DoH8kIDOwHqGXYq7AwIiVROYuAUjxyKiZ--60ba0r4A";
-  //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjQ1MzE1OGZiYzE2MWM2NDcxYmQxMCIsImlhdCI6MTcxMTYzMjQ5MCwiZXhwIjoxNzExNzE4ODkwfQ.G-TQFSVkhYIxor4QU8tmmFTDNcnRyvHnDqgmO8E5Jco";
-  async function login() {
-    const response = await fetch(`${BASE_URL}/user/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        email: "tony@stark.com",
-        password: "password123",
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const data = await response.json();
-    await data;
-    setTokenData(data.body.token);
-    console.log(data.body.token);
+  async function launchEvent() {
+    if ((await login(email, password)) === true) {
+      await fetchUserInfo();
+      navigate("/user");
+    } else alert("votre email et/ou mot de passe sont erroner");
+    if (!email || !password) {
+      alert("veuiller rentrer un email et un mot de passe");
+      return;
+    }
   }
-  async function logini() {
-    const response = await fetch(`${BASE_URL}/user/profile`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + tokenn,
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const data = await response.json();
-    setTokenData(data);
-    console.log(data.body);
+
+  async function fetchUserInfo() {
+    const infoData = await infoUser();
+    if (infoData) {
+      const infoUser = dispatch(
+        infoUserSlice.actions.addInfoUser({
+          firstName: infoData.firstName,
+          lastName: infoData.lastName,
+        })
+      );
+      console.log(infoUser);
+    } else {
+      console.log("Failed to fetch user info");
+    }
   }
-  async function loginii() {
-    const response = await fetch(`${BASE_URL}/user/profile`, {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + tokenn,
-        "Content-type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        userName: "tourelle",
-      }),
-    });
-    const data = await response.json();
-    setTokenData(data);
-    console.log(data);
-  }
-  const infoUser = useSelector((state) => console.log(state));
-  //bloquer le button tant que le user n'a pas rentrer tout les champs et tant que les champs ne sont pas bon aussi puis rediriger
+
+  changeUserName("ton oncle");
+
   return (
     <>
       <main className="main bg-dark">
@@ -63,21 +47,33 @@ function SignIn() {
           <form>
             <div className="input-wrapper">
               <label htmlFor="username">Username</label>
-              <input type="text" id="username" />
+              <input
+                type="text"
+                id="username"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input-wrapper">
               <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            <NavLink to="/User">
-              <button className="sign-in-button" onClick={logini}>
-                Sign In
-              </button>
-            </NavLink>
+            <button
+              type="button"
+              className="sign-in-button"
+              onClick={launchEvent}
+            >
+              Sign In
+            </button>
           </form>
         </section>
       </main>

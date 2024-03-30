@@ -1,35 +1,34 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const infoUserSlice = createSlice({
+export const infoUserSlice = createSlice({
   name: "infoUser",
   initialState: [
     {
       firstName: "no firstName",
       lastName: "no lastName",
-      userName: "no userName",
     },
   ],
   reducers: {
     addInfoUser: (state, action) => {
+      const { firstName, lastName, userName } = action.payload;
       const newInfoUser = {
-        firstName: action.payload,
-        lastName: action.payload,
-        userName: action.payload,
+        firstName,
+        lastName,
       };
       state.push(newInfoUser);
     },
   },
 });
 
-const tokenSlice = createSlice({
-  name: "Token",
-  initialState: [{ token: "" }],
+export const userNameSlice = createSlice({
+  name: "userName",
+  initialState: [{ userName: "no userName" }],
   reducers: {
-    addToken: (state, action) => {
-      const newToken = {
-        token: action.payload,
+    addUserName: (state, action) => {
+      const newUserName = {
+        userName: action.payload,
       };
-      state.push(newToken);
+      state.push(newUserName);
     },
   },
 });
@@ -37,6 +36,6 @@ const tokenSlice = createSlice({
 export const store = configureStore({
   reducer: {
     infoUser: infoUserSlice.reducer,
-    token: tokenSlice.reducer,
+    userName: userNameSlice.reducer,
   },
 });

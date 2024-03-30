@@ -290,3 +290,35 @@ html {
     width: 200px;
   }
 }
+
+#wrapAllInputEditUsername {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+#wrapAllInputEditUsername input {
+  border-radius: 5px;
+}
+#wrapAllInputEditUsername .wrapInput {
+  display: flex;
+  justify-content: space-between;
+  width: 36%;
+  gap: 5px;
+}
+.header h2 {
+  margin: 15px 0px;
+  font-size: xx-large;
+}
+#wrapBtnEditUsername {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 20px 0px;
+}
+#wrapBtnEditUsername button {
+  width: 140px;
+  color: white;
+  background-color: #00bc77;
+}

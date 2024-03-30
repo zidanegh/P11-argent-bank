@@ -1,42 +1,54 @@
+import { useDispatch, useSelector } from "react-redux";
+
 const BASE_URL = "http://localhost:3001/api/v1";
-
-const tokenn = "";
-
-async function login(email, password) {
-  const response = await fetch(`${BASE_URL}/user/login`, {
-    method: "post",
+export async function login(email, password) {
+  const loginResponse = await fetch(`${BASE_URL}/user/login`, {
+    method: "POST",
     body: JSON.stringify({
       email: email,
       password: password,
     }),
-  });
-  const data = await response.json();
-  console.log(data);
-}
-async function logini(token) {
-  const response = await fetch(`${BASE_URL}/user/profile`, {
-    method: "POST",
     headers: {
-      Authorization: "Bearer " + token,
       "Content-type": "application/json; charset=UTF-8",
     },
   });
-  const data = await response.json();
-  setTokenData(data);
-  console.log(data);
+  const loginData = await loginResponse.json();
+  if (loginResponse.ok) {
+    localStorage.setItem("token", `${loginData.body.token}`);
+    return true;
+  } else {
+    console.log("problen with token, here is the error " + loginData.status);
+  }
 }
-async function loginii() {
+
+export async function infoUser() {
+  const infoResponse = await fetch(`${BASE_URL}/user/profile`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  const infoData = await infoResponse.json();
+  console.log(infoData);
+  if (infoResponse.ok) {
+    return infoData.body;
+  } else {
+    console.log("can't fetch the data, here is the error " + infoData.status);
+  }
+}
+
+export async function changeUserName(userName) {
   const response = await fetch(`${BASE_URL}/user/profile`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + tokenn,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({
-      userName: "poule",
+      userName: `${userName}`,
     }),
   });
   const data = await response.json();
-  setTokenData(data);
   console.log(data);
 }

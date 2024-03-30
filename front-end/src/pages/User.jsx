@@ -1,4 +1,4 @@
-import EditName from "../components/EditName";
+import EditName from "../containers/EditName";
 import Transaction from "../components/Transaction";
 
 function User() {

@@ -55,6 +55,9 @@ html {
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .main-nav-item:hover {
@@ -321,4 +324,9 @@ html {
   width: 140px;
   color: white;
   background-color: #00bc77;
+}
+#connectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

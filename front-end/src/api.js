@@ -30,7 +30,6 @@ export async function infoUser() {
     },
   });
   const infoData = await infoResponse.json();
-  console.log(infoData);
   if (infoResponse.ok) {
     return infoData.body;
   } else {
@@ -50,5 +49,9 @@ export async function changeUserName(userName) {
     }),
   });
   const data = await response.json();
-  console.log(data);
+  if (response.ok) {
+    return data.body.userName;
+  } else {
+    console.log("can't fetch the data, here is the error " + data.status);
+  }
 }

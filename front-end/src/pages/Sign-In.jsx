@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { infoUserSlice } from "../store/store";
+import { infoUserSlice, userNameSlice } from "../store/store";
 import { infoUser, login, changeUserName } from "../api";
 import { useState } from "react";
 
@@ -28,8 +28,13 @@ function SignIn() {
         infoUserSlice.actions.addInfoUser({
           firstName: infoData.firstName,
           lastName: infoData.lastName,
+          connect: true,
         })
       );
+      const infoUserName = dispatch({
+        type: "userName/addUserName",
+        payload: infoData.userName,
+      });
       console.log(infoUser);
     } else {
       console.log("Failed to fetch user info");

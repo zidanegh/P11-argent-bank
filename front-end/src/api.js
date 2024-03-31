@@ -14,7 +14,7 @@ export async function login(email, password) {
   });
   const loginData = await loginResponse.json();
   if (loginResponse.ok) {
-    localStorage.setItem("token", `${loginData.body.token}`);
+    sessionStorage.setItem("token", `${loginData.body.token}`);
     return true;
   } else {
     console.log("problen with token, here is the error " + loginData.status);
@@ -25,7 +25,7 @@ export async function infoUser() {
   const infoResponse = await fetch(`${BASE_URL}/user/profile`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       "Content-type": "application/json; charset=UTF-8",
     },
   });
@@ -41,7 +41,7 @@ export async function changeUserName(userName) {
   const response = await fetch(`${BASE_URL}/user/profile`, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       "Content-type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({

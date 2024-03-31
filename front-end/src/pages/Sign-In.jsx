@@ -41,8 +41,6 @@ function SignIn() {
     }
   }
 
-  changeUserName("ton oncle");
-
   return (
     <>
       <main className="main bg-dark">

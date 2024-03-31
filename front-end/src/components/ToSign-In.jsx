@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 function ToSignIn() {
-  //rajouter bouton sign-Out
-
   return (
     <>
       <NavLink className="main-nav-item" to="/Sign-in">

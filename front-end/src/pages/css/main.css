@@ -307,7 +307,7 @@ html {
 #wrapAllInputEditUsername .wrapInput {
   display: flex;
   justify-content: space-between;
-  width: 36%;
+  width: max-content;
   gap: 5px;
 }
 .header h2 {

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { userNameSlice } from "../store/store";
+import { infoUserSlice } from "../store/store";
 import { useState } from "react";
 import { changeUserName } from "../api";
 
@@ -12,8 +12,7 @@ function Editeur({ switchToWelcome }) {
     setNewUserName(value);
   };
   const handleClick = async () => {
-    dispatch(userNameSlice.actions.reset());
-    dispatch(userNameSlice.actions.addUserName(newUserName));
+    dispatch(infoUserSlice.actions.addUserName(newUserName));
     switchToWelcome();
     changeUserName(newUserName);
     console.log(changeUserName(newUserName));

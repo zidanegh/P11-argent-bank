@@ -3,6 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const infoUserInitialState = {
   firstName: "no firstName",
   lastName: "no lastName",
+  userName: "no userName",
   connect: false,
 };
 
@@ -17,10 +18,21 @@ export const infoUserSlice = createSlice({
   initialState: infoUserInitialState,
   reducers: {
     addInfoUser: (state, action) => {
-      const { firstName, lastName, connect } = action.payload;
-      state.firstName = firstName;
-      state.lastName = lastName;
-      state.connect = connect;
+      const { firstName, lastName, connect, userName } = action.payload;
+      //state.firstName = firstName;
+      //state.lastName = lastName;
+      //state.connect = connect;
+      return {
+        ...state,
+        firstName: firstName,
+        lastName: lastName,
+        connect: connect,
+        userName: userName,
+      };
+    },
+    addUserName: (state, action) => {
+      //state.userName = action.payload;
+      return { ...state, userName: action.payload };
     },
     reset: (state) => {
       Object.assign(state, infoUserInitialState);
@@ -34,19 +46,8 @@ export const userNameSlice = createSlice({
   initialState: userNameInitialState,
   reducers: {
     addUserName: (state, action) => {
-      state.userName = action.payload;
-    },
-    reset: (state) => {
-      state.userName = userNameInitialState.userName;
-    },
-  },
-});
-export const connectedSlice = createSlice({
-  name: "userName",
-  initialState: userNameInitialState,
-  reducers: {
-    addUserName: (state, action) => {
-      state.userName = action.payload;
+      //state.userName = action.payload;
+      return { ...state, userName: action.payload };
     },
     reset: (state) => {
       state.userName = userNameInitialState.userName;

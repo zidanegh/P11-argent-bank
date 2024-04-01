@@ -8,7 +8,7 @@ function ToUser() {
     navigate("/");
     window.location.reload();
   }
-  const stateUserName = useSelector((state) => state.userName);
+  const stateUserName = useSelector((state) => state.infoUser);
   return (
     <>
       <NavLink className="main-nav-item" to="/User">

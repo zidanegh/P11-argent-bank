@@ -101,7 +101,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /user/transaction/{month}:
+  /user/transaction:
     post:
       security:
         - Bearer: []
@@ -110,19 +110,13 @@ paths:
       summary: User bank transaction of the month
       description: API for fetching the user transaction of the month
       parameters:
-        - in: body
-          name: body
-          description: fetch all the month transaction
-          required: true
-          schema:
-            $ref: "#/definitions/User"
       produces:
         - application/json
       responses:
         "200":
-          description: User month transaction retrieved successully
+          description: User month transaction retrieved successfully
           schema:
-            $ref: "#/definitions/ApiResponse"
+            $ref: "#/definitions/monthTransaction"
         "400":
           description: Invalid Fields
         "500":
@@ -153,6 +147,66 @@ paths:
           description: User transaction retrieved successfully
           schema:
             $ref: "#/definitions/UserTransaction"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - User transactions
+      summary: Delete a user transaction
+      description: Delete a user transaction for a specific month and ID
+      parameters:
+        - in: path
+          name: month
+          description: Month of the transaction
+          required: true
+          type: string
+        - in: path
+          name: id
+          description: ID of the transaction
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction deleted successfully
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User transactions
+      summary: Modify a user transaction
+      description: Modify a user transaction for a specific month and ID
+      parameters:
+        - in: path
+          name: month
+          description: Month of the transaction
+          required: true
+          type: string
+        - in: path
+          name: id
+          description: ID of the transaction
+          required: true
+          type: string
+        - in: body
+          name: transaction
+          description: Transaction object to be modified
+          required: true
+          schema:
+            $ref: "#/definitions/UserTransaction"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction modified successfully
         "400":
           description: Invalid Fields
         "500":
@@ -244,3 +298,25 @@ definitions:
             note:
               type: string
               example: "Iorem ipsum"
+  monthTransaction:
+  type: object
+  items:
+    type: array
+    properties:
+      month:
+        type: string
+        description: The month
+      transactions:
+        type: array
+        items:
+          type: object
+          properties:
+            transaction_id:
+              type: string
+              description: Unique identifier for the transaction
+            amount:
+              type: number
+              description: The amount of the transaction
+            description:
+              type: string
+              description: A description of the transaction

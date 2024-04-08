@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
-
 const BASE_URL = "http://localhost:3001/api/v1";
 export async function login(email, password) {
   const loginResponse = await fetch(`${BASE_URL}/user/login`, {

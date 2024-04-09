@@ -1,12 +1,17 @@
-import { NavLink } from "react-router-dom";
 import ToSignIn from "../components/ToSign-In";
 import ToUser from "../components/ToUser";
 import { useSelector } from "react-redux";
-import { connect } from "mongoose";
+import { useEffect } from "react";
 
 function Connected() {
   const connected = useSelector((state) => state.infoUser.connect);
-
+  useEffect(() => {
+    if (connected) {
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [connected]);
+  console.log(localStorage.getItem("token"));
   return (
     <div id="connectionHeader">{connected ? <ToUser /> : <ToSignIn />}</div>
   );

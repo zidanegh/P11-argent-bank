@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { infoUserSlice } from "../store/store";
-import { infoUser, login, changeUserName } from "../api";
+import { infoUser, login } from "../api";
 import { useState } from "react";
 
 function SignIn() {

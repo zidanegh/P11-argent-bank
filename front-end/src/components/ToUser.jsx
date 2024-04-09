@@ -7,6 +7,7 @@ function ToUser() {
   function disconnect() {
     navigate("/");
     window.location.reload();
+    localStorage.removeItem("token");
   }
   const stateUserName = useSelector((state) => state.infoUser);
   return (
@@ -14,7 +15,7 @@ function ToUser() {
       <NavLink className="main-nav-item" to="/User">
         <p>{stateUserName.userName}</p> <i className="fa fa-user-circle"></i>
       </NavLink>
-      <NavLink onClick={disconnect}>
+      <NavLink to="/" onClick={disconnect}>
         <i className="fa-solid fa-power-off"></i>
       </NavLink>
     </>

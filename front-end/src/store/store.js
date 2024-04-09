@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-// Initial state for infoUserSlice
 const infoUserInitialState = {
   firstName: "no firstName",
   lastName: "no lastName",
@@ -7,21 +6,16 @@ const infoUserInitialState = {
   connect: false,
 };
 
-// Initial state for userNameSlice
 const userNameInitialState = {
   userName: "no UserName",
 };
 
-// Create infoUserSlice
 export const infoUserSlice = createSlice({
   name: "infoUser",
   initialState: infoUserInitialState,
   reducers: {
     addInfoUser: (state, action) => {
       const { firstName, lastName, connect, userName } = action.payload;
-      //state.firstName = firstName;
-      //state.lastName = lastName;
-      //state.connect = connect;
       return {
         ...state,
         firstName: firstName,
@@ -31,7 +25,6 @@ export const infoUserSlice = createSlice({
       };
     },
     addUserName: (state, action) => {
-      //state.userName = action.payload;
       return { ...state, userName: action.payload };
     },
     reset: (state) => {
@@ -40,13 +33,11 @@ export const infoUserSlice = createSlice({
   },
 });
 
-// Create userNameSlice
 export const userNameSlice = createSlice({
   name: "userName",
   initialState: userNameInitialState,
   reducers: {
     addUserName: (state, action) => {
-      //state.userName = action.payload;
       return { ...state, userName: action.payload };
     },
     reset: (state) => {

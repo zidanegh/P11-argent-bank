@@ -32,8 +32,6 @@ function SignIn() {
           connect: true,
         })
       );
-
-      console.log(infoUser);
     } else {
       console.log("Failed to fetch user info");
     }

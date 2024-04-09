@@ -15,7 +15,6 @@ function Editeur({ switchToWelcome }) {
     dispatch(infoUserSlice.actions.addUserName(newUserName));
     switchToWelcome();
     changeUserName(newUserName);
-    console.log(changeUserName(newUserName));
   };
 
   return (

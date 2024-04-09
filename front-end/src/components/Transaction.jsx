@@ -1,5 +1,4 @@
 function Transaction() {
-  //adapter les transaction selon le user
   return (
     <section className="account">
       <div className="account-content-wrapper">

@@ -6,7 +6,7 @@ import { connect } from "mongoose";
 
 function Connected() {
   const connected = useSelector((state) => state.infoUser.connect);
-  console.log(connected);
+
   return (
     <div id="connectionHeader">{connected ? <ToUser /> : <ToSignIn />}</div>
   );

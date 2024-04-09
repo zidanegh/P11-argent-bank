@@ -11,8 +11,6 @@ import Footer from "./containers/Footer";
 const Router = () => {
   const isAuthenticated = useSelector((state) => state.infoUser.connect);
 
-  console.log("Is Authenticated:", isAuthenticated);
-
   return (
     <BrowserRouter>
       <Header />
